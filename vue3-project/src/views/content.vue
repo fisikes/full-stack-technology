@@ -4,7 +4,7 @@
 
 <template>
 	内容页
-	<el-buton type="primary">主要按钮</el-buton>
+	<el-button type="primary">主要按钮</el-button>
 </template>
 
 <style scoped>
