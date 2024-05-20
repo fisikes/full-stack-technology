@@ -30,6 +30,10 @@ const routes = [
 				path: "/open-task",
 				component: () => import("@/views/to_be_continued.vue")
 			},
+			{
+				path: "/analyse",
+				component: () => import("@/views/analyse.vue")
+			},
 		]
 	},
 	
