@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'fisikes'
+version = 'unspecified'
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+
+    implementation('org.antlr:antlr4-runtime:4.11.1')
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+task runMain(type: JavaExec) {
+    group = 'application'
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'fisikes.Main'
+    standardInput = System.in // 这行确保程序能够读取标准输入
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
+application {
+    mainClassName = 'fisikes.Main'
+}

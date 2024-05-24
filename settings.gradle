@@ -1,3 +1,4 @@
 rootProject.name = 'full-stack-technology'
 include 'simple-server'
+include 'antlr4'
 

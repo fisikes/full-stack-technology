@@ -1,7 +1,6 @@
 package fisikes.simpleserver;
 
 
-import lombok.SneakyThrows;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -18,6 +17,8 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.io.IOException;
 
 @SpringBootTest
 class EsDemos {
@@ -41,10 +42,8 @@ class EsDemos {
         );
     }
 
-
-    @SneakyThrows
     @Test
-    void test() {
+    void test() throws IOException {
 
         SearchRequest searchRequest = new SearchRequest("v2_exposure_domain")
                 .source(new SearchSourceBuilder());
