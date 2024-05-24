@@ -1,6 +1,8 @@
 plugins {
     id 'java'
     id 'application'
+    id 'antlr'
+
 }
 
 group = 'fisikes'
@@ -13,10 +15,18 @@ repositories {
 
 dependencies {
 
-    implementation('org.antlr:antlr4-runtime:4.11.1')
+    antlr('org.antlr:antlr4:4.11.1')
+    implementation 'org.antlr:antlr4-runtime:4.11.1'
 
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+
+generateGrammarSource {
+
+
+    arguments += ["-package", "fisikes.antlr4"]
 }
 
 task runMain(type: JavaExec) {
@@ -33,4 +43,10 @@ test {
 
 application {
     mainClassName = 'fisikes.Main'
+}
+
+
+compileJava {
+    dependsOn generateGrammarSource
+
 }
