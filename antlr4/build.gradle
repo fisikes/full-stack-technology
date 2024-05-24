@@ -23,8 +23,7 @@ task runMain(type: JavaExec) {
     group = 'application'
     classpath = sourceSets.main.runtimeClasspath
     main = 'fisikes.Main'
-    standardInput = System.in // 这行确保程序能够读取标准输入
-
+    standardInput = System.in
 }
 
 test {

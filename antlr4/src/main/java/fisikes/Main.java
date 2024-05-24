@@ -5,6 +5,7 @@ import fisikes.array_init.ArrayInitParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.io.IOException;
 
@@ -17,5 +18,11 @@ public class Main {
         ArrayInitParser parser = new ArrayInitParser(tokens);
         ParseTree tree = parser.init(); // begin parsing at init rule
         System.out.println(tree.toStringTree(parser)); // print LISP-style tree
+
+        // Create a generic parse tree walker that can trigger callbacks
+        ParseTreeWalker walker = new ParseTreeWalker();
+        // Walk the tree created during the parse, trigger callbacks
+        walker.walk(new ShortToUnicodeString(), tree);
+        System.out.println(); // print a \n after translation
     }
 }
