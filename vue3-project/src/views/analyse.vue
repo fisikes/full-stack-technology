@@ -13,7 +13,7 @@
     // businessType: "web", id: "945ca3618553153d8953ee38736824fa",
     //businessType: "ip", id: "a9478f5bd293637352fd1c2a30844aa6",
     businessType: "domain",
-    id: "efd3f9fe460105ab33dcb21bda6694aa",
+    id: "6a251909a6305084430d42c12aa1fd8f",
   });
 
   const clickGetAll = () => {
@@ -70,8 +70,8 @@
 
 <style scoped>
   .el-table {
-    --el-table-border-color: #1c54d8;
+    --el-table-border-color: #1a6e78;
     --el-table-text-color: black;
-    --el-table-header-text-color: black;
+    --el-table-header-text-color: rgb(60, 20, 237);
   }
 </style>

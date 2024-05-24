@@ -1,4 +1,4 @@
-package fisikes.core;
+package fisikes.simpleserver;
 
 import java.util.Objects;
 
