@@ -1,12 +1,11 @@
 package fisikes;
 
-import fisikes.array_init.ArrayInitListener;
-import fisikes.array_init.ArrayInitParser;
+import fisikes.antlr4.ArrayInitParser;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-public class ShortToUnicodeString implements ArrayInitListener {
+public class ShortToUnicodeString implements fisikes.antlr4.ArrayInitListener {
     @Override
     public void enterInit(ArrayInitParser.InitContext ctx) {
         System.out.print('"');

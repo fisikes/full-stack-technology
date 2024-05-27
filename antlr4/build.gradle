@@ -1,14 +1,26 @@
 plugins {
     id 'java'
+    id 'idea'
     id 'application'
     id 'antlr'
-
+    id 'maven-publish'
 }
 
 group = 'fisikes'
 version = 'unspecified'
 
+sourceSets {
+    generated{
+        java.srcDir "${projectDir}/src/generated/java/"
+    }
+
+    main {
+        java.srcDirs += "${projectDir}/src/generated/java/"
+    }
+}
+
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
@@ -23,10 +35,28 @@ dependencies {
 }
 
 
+
+
 generateGrammarSource {
+    maxHeapSize = "64m"
 
+    arguments += [ "-visitor",
+                   "-long-messages",
+                   "-package", "fisikes.antlr4" ]
+    outputDirectory = file("${projectDir}/src/generated/java/fisikes/antlr4")
 
-    arguments += ["-package", "fisikes.antlr4"]
+    // Keep a copy of generated sources
+//    doLast {
+//        println "Copying generated grammar lexer/parser files to main directory."
+//        copy {
+//            from "${buildDir}/generated-src/antlr/main"
+//            into "src/main/java/fisikes/antlr4"
+//        }
+//    }
+}
+
+clean.doLast {
+    file('generated-src').deleteDir()
 }
 
 task runMain(type: JavaExec) {
@@ -49,4 +79,22 @@ application {
 compileJava {
     dependsOn generateGrammarSource
 
+}
+
+
+// Publish to Maven Repository
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+// Intellij
+idea {
+    module {
+        sourceDirs += file("${projectDir}/src/generated/java")
+        generatedSourceDirs += file("${projectDir}/src/generated/java")
+    }
 }
