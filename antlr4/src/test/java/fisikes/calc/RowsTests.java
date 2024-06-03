@@ -6,6 +6,11 @@ import org.junit.jupiter.api.Test;
 public class RowsTests {
 
     @Test
+    void test2() {
+        System.out.println("\"avc\\\"\"");
+    }
+
+    @Test
     void test() {
 
         String rows = """

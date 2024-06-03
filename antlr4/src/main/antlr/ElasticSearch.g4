@@ -1,15 +1,24 @@
 grammar ElasticSearch;
 
-
-
 // 条件: 表达式, 多个表达式通过逻辑运算符连接
-condition: condition ('and'|'or') condition
+condition: condition ('&'|'|') condition
     | '(' condition ')'
-    | Id ('='|'!='|'like') Value
-    | Value
+    | id ('='|'!='|'like') STRING
+    | (TEXT|STRING)
     ;
 
+Equels: '=';
+
+NotEquels: '!=';
+
 // identifier '"' ('\\"'|~["])* '"' ;
-Value: '"' ('\\"'|~["])* '"' ;
-Id  :   [a-zA-Z0-9_.]+;      // match identifiers <label id="code.tour.expr.3"/>
-WS  :   [ \t]+ -> skip ; // toss out whitespace
+TEXT: ~[\n\r"]+;
+STRING: '"' ('\\"'|~["])* '"' ;
+id: ID_SUB ('.' ID_SUB)*;
+ID_SUB : ID_LETTER (ID_LETTER | DIGIT)* ; // From C language fragment
+fragment ID_LETTER : 'a'..'z'|'A'..'Z'|'_' ;
+fragment DIGIT : '0'..'9' ;
+
+WS : (' '|'\t'|'\r'|'\n')+ -> skip ;
+LINE_COMMENT : '//' .*? '\r'? '\n' -> skip ;
+COMMENT : '/*' .*? '*/' -> skip ;

@@ -1,4 +1,5 @@
-grammar Demos;
+grammar Demo;
 
-
-assign : ID '=' expr ; // 匹配赋值语句像"a=5"
+file : NL+ ;
+STUFF : ~'\n'+ -> skip ;
+NL : '\n' ;
